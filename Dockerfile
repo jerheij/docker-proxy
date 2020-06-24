@@ -1,4 +1,9 @@
-FROM docker.io/alpine:latest
+FROM alpine:latest
+
+ARG VCS_REF
+LABEL org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/jerheij/docker-proxy"
+
 COPY entry.sh /entry.sh
 RUN apk update && \
     apk add nginx openssl shadow tzdata && \
