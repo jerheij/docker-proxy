@@ -1,6 +1,3 @@
-[![](https://images.microbadger.com/badges/version/jerheij/proxy:stable.svg)](https://microbadger.com/images/jerheij/proxy:stable "Get your own version badge on microbadger.com") [![](https://images.microbadger.com/badges/commit/jerheij/proxy:stable.svg)](https://microbadger.com/images/jerheij/proxy:stable "Get your own commit badge on microbadger.com") [![](https://images.microbadger.com/badges/image/jerheij/proxy:stable.svg)](https://microbadger.com/images/jerheij/proxy:stable "Get your own image badge on microbadger.com")  
-
-## Nginx reverse proxy container
 
 ### Description
 This is a basic nginx container built upon the alpine:latest image. You can use this container as a reverse proxy or to convert your connection into SSL. It supports a recent openssl version so you are able to use most, if not all, recent openssl features even if your base OS does not support it. I use this docker container myself for access to different web tools I host both internet and locally connectable. It also prevents you from having to expore multiple ports and/or IP addresses for every single site running in Docker.
