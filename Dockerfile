@@ -3,6 +3,7 @@ FROM alpine:latest
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/jerheij/docker-proxy"
+HEALTHCHECK --interval=30s --timeout=2s CMD nc -z localhost 80
 
 COPY entry.sh /entry.sh
 RUN apk update && \
