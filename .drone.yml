@@ -27,6 +27,5 @@ steps:
   when:
     event:
       - push
-      - pull_request
     branch:
       - master
