@@ -13,7 +13,6 @@ RUN apk update && \
     chmod +x /entry.sh && \
     rm -rf /var/cache/apk/* && \
     rm -f /etc/nginx/conf.d/* && \
-    mkdir /run/nginx && \
     chown nginx: /run/nginx
 EXPOSE 80 443
 ENTRYPOINT ["/entry.sh"]
