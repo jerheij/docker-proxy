@@ -1,20 +1,20 @@
-#!/usr/bin/env ash
+#!/usr/bin/env bash
 
 if [[ ! -z ${UUID} ]]
 then
   echo
   echo "Replacing old nginx UID with ${UUID}"
-  OldUID=$(getent passwd nginx | cut -d ':' -f3)
-  usermod -u ${UUID} nginx
-  find / -user ${OldUID} -exec chown -h nginx {} \; &> /dev/null
+  OldUID=$(getent passwd www-data | cut -d ':' -f3)
+  usermod -u ${UUID} www-data
+  find / -user ${OldUID} -exec chown -h www-data {} \; &> /dev/null
 fi
 
 if [[ ! -z ${GUID} ]]
 then
   echo "Replacing old nginx GID with ${GUID}"
-  OldGID=$(getent passwd nginx | cut -d ':' -f4)
-  groupmod -g ${GUID} nginx
-  find / -user ${OldGID} -exec chgrp -h nginx {} \; &> /dev/null
+  OldGID=$(getent passwd www-data | cut -d ':' -f4)
+  groupmod -g ${GUID} www-data
+  find / -user ${OldGID} -exec chgrp -h www-data {} \; &> /dev/null
 fi
 
 if [[ ! -z ${TZ} ]]

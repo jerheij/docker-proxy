@@ -1,19 +1,22 @@
-FROM alpine:latest
+FROM ubuntu:latest
 
-ARG VCS_REF
-LABEL org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/jerheij/docker-proxy"
 HEALTHCHECK --interval=30s --timeout=2s CMD nc -z localhost 80
 
 COPY entry.sh /entry.sh
-RUN apk update && \
-    apk add nginx openssl shadow tzdata && \
-    deluser $(getent passwd 33 | cut -d: -f1) && \
-    delgroup $(getent group 33 | cut -d: -f1) 2>/dev/null || true && \
+RUN apt-get update && \
+    apt-get install curl gnupg -y && \
+    curl -L https://nginx.org/keys/nginx_signing.key | apt-key add - && \
+    echo "deb https://nginx.org/packages/mainline/ubuntu/ $(grep UBUNTU_CODENAME /etc/os-release | cut -d "=" -f2) nginx" >> /etc/apt/sources.list.d/nginx.list && \
+    echo "deb-src https://nginx.org/packages/mainline/ubuntu/ $(grep UBUNTU_CODENAME /etc/os-release | cut -d "=" -f2) nginx" >> /etc/apt/sources.list.d/nginx.list && \
+    apt-get purge curl gnupg -y && \
+    apt-get autoremove -y && \
+    apt-get update && \
+    apt-get install -y nginx openssl tzdata && \
+    apt-get upgrade -y && \
+    apt-get clean all && \
+    rm -rf /var/lib/apt/lists/* && \
     chmod +x /entry.sh && \
-    rm -rf /var/cache/apk/* && \
-    rm -f /etc/nginx/conf.d/* && \
-    chown nginx: /run/nginx
+    rm -f /etc/nginx/conf.d/*
 EXPOSE 80 443
 ENTRYPOINT ["/entry.sh"]
 CMD ["nginx", "-g", "daemon off;"]
