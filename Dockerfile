@@ -11,7 +11,7 @@ RUN apt-get update && \
     apt-get purge curl gnupg -y && \
     apt-get autoremove -y && \
     apt-get update && \
-    apt-get install -y nginx openssl tzdata && \
+    apt-get install -y nginx openssl tzdata netcat && \
     apt-get upgrade -y && \
     apt-get clean all && \
     rm -rf /var/lib/apt/lists/* && \
