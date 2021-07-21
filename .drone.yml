@@ -38,9 +38,10 @@ steps:
   settings:      
     host: 192.168.169.3
     port: 25
-    from: EMAIL_FROM
+    from: 
+      from_secret: EMAIL_FROM
     recipients: 
-      - EMAIL_TO
+      from_secret: EMAIL_TO
     recipients_only: true
     # when:
       # status: [changed, failure]
