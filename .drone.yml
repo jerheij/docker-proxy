@@ -33,12 +33,14 @@ steps:
       - master
       - mail_notifications
 
-  notify:
-    image: drillster/drone-email
+- name: notify
+  image: drillster/drone-email
+  settings:      
     host: 192.168.169.3
     port: 25
     from: EMAIL_FROM
-    recipients: [EMAIL_TO]
+    recipients: 
+      - EMAIL_TO
     recipients_only: true
-    when:
-      status: [success, failure]
+    # when:
+      # status: [changed, failure]
