@@ -33,7 +33,7 @@ steps:
       - master
       - mail_notifications
 
-- name: notify
+- name: email_notification
   image: drillster/drone-email
   settings:      
     host: 192.168.169.3
@@ -43,5 +43,3 @@ steps:
     recipients: 
       from_secret: EMAIL_TO
     recipients_only: true
-    # when:
-      # status: [changed, failure]
