@@ -32,13 +32,12 @@ steps:
     branch:
       - master
 
-- name: email
   notify:
     image: drillster/drone-email
     host: 192.168.169.3
     port: 25
-    from: drone@heijlond.com
-    recipients: [2jdrfjt8yh@pomail.net]
+    from: EMAIL_FROM
+    recipients: [EMAIL_TO]
     recipients_only: true
     when:
       status: [success, failure]
