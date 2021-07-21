@@ -31,7 +31,6 @@ steps:
       - push
     branch:
       - master
-      - mail_notifications
 
 - name: email_notification
   image: drillster/drone-email
