@@ -32,6 +32,20 @@ steps:
       branch:
         - master
 
+  - name: docker-cron-build
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+      repo: jerheij/proxy
+      no_cache: true
+      tags: autobuild
+    when:
+      event:
+        - cron
+
   - name: email_notification
     image: drillster/drone-email
     settings:
