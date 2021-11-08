@@ -45,6 +45,9 @@ steps:
     when:
       event:
         - cron
+      include:
+        cron:
+          - hourly
 
   - name: email_notification
     image: drillster/drone-email
