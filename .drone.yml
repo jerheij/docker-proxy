@@ -54,7 +54,7 @@ steps:
     settings:
       host: 192.168.169.3
       port: 25
-      subject: "Drone Build {{repo.name}}/{{repo.branch}} {{tag}} {{build.status}}"
+      subject: "Drone Build {{repo.name}}/{{commit.branch}} {{tag}} {{build.status}}"
       body: >
         {{build.link}}
       from:
