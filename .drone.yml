@@ -41,13 +41,12 @@ steps:
         from_secret: DOCKER_PASSWORD
       repo: jerheij/proxy
       no_cache: true
-      tags: autobuild
+      tags: autostable
     when:
       event:
         - cron
-      include:
-        cron:
-          - hourly
+      branch:
+        - stable
 
   - name: email_notification
     image: drillster/drone-email
