@@ -54,7 +54,7 @@ steps:
     settings:
       host: 192.168.169.3
       port: 25
-      subject: "{{repo.name}} Docker build {{build.status}}"
+      subject: "Docker build {{repo.name}}/{{tag}} {{build.status}}"
       from:
         from_secret: EMAIL_FROM
       recipients:
