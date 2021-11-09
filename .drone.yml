@@ -45,6 +45,7 @@ steps:
     when:
       event:
         - cron
+        - push
       branch:
         - stable
 
