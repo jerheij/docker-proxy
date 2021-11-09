@@ -32,7 +32,7 @@ steps:
       branch:
         - master
 
-  - name: docker-cron-build
+  - name: docker-stable-build
     image: plugins/docker
     settings:
       username:
@@ -41,20 +41,20 @@ steps:
         from_secret: DOCKER_PASSWORD
       repo: jerheij/proxy
       no_cache: true
-      tags: autobuild
+      tags: stable
     when:
       event:
         - cron
-      include:
-        cron:
-          - hourly
+        - push
+      branch:
+        - stable
 
   - name: email_notification
     image: drillster/drone-email
     settings:
       host: 192.168.169.3
       port: 25
-      subject: "Drone Build {{repo.name}}/{{repo.branch}} {{tag}} {{build.status}}"
+      subject: "Drone Build {{repo.name}}/{{commit.branch}} {{tag}} {{build.status}}"
       body: >
         {{build.link}}
       from:
