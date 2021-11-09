@@ -16,44 +16,45 @@ steps:
       event:
         - tag
 
-  - name: docker-latest-build
-    image: plugins/docker
-    settings:
-      username:
-        from_secret: DOCKER_USERNAME
-      password:
-        from_secret: DOCKER_PASSWORD
-      repo: jerheij/proxy
-      no_cache: true
-      tags: latest
-    when:
-      event:
-        - push
-      branch:
-        - master
+  # - name: docker-latest-build
+  #   image: plugins/docker
+  #   settings:
+  #     username:
+  #       from_secret: DOCKER_USERNAME
+  #     password:
+  #       from_secret: DOCKER_PASSWORD
+  #     repo: jerheij/proxy
+  #     no_cache: true
+  #     tags: latest
+  #   when:
+  #     event:
+  #       - push
+  #     branch:
+  #       - master
 
-  - name: docker-cron-build
-    image: plugins/docker
-    settings:
-      username:
-        from_secret: DOCKER_USERNAME
-      password:
-        from_secret: DOCKER_PASSWORD
-      repo: jerheij/proxy
-      no_cache: true
-      tags: autobuild
-    when:
-      event:
-        - cron
-      include:
-        cron:
-          - hourly
+  # - name: docker-cron-build
+  #   image: plugins/docker
+  #   settings:
+  #     username:
+  #       from_secret: DOCKER_USERNAME
+  #     password:
+  #       from_secret: DOCKER_PASSWORD
+  #     repo: jerheij/proxy
+  #     no_cache: true
+  #     tags: autobuild
+  #   when:
+  #     event:
+  #       - cron
+  #     include:
+  #       cron:
+  #         - hourly
 
   - name: email_notification
     image: drillster/drone-email
     settings:
       host: 192.168.169.3
       port: 25
+      subject: "{{repo.name}} Docker build {{build.status}}"
       from:
         from_secret: EMAIL_FROM
       recipients:
