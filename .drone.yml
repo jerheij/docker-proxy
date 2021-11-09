@@ -32,7 +32,7 @@ steps:
       branch:
         - master
 
-  - name: docker-cron-build
+  - name: docker-stable-build
     image: plugins/docker
     settings:
       username:
@@ -41,7 +41,7 @@ steps:
         from_secret: DOCKER_PASSWORD
       repo: jerheij/proxy
       no_cache: true
-      tags: autostable
+      tags: stable
     when:
       event:
         - cron
