@@ -54,6 +54,9 @@ steps:
     settings:
       host: 192.168.169.3
       port: 25
+      subject: "Drone Build {{repo.name}}/{{repo.branch}} {{tag}} {{build.status}}"
+      body: >
+        {{build.link}}
       from:
         from_secret: EMAIL_FROM
       recipients:
@@ -63,3 +66,4 @@ steps:
       event:
         - tag
         - push
+        - cron
