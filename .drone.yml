@@ -56,12 +56,7 @@ steps:
       port: 25
       subject: "Drone Build {{repo.name}}/{{tag}} {{build.status}}"
       body: >
-        Repo: {{repo.fullName}}
-        <p>Branch: {{repo.branch}}</p>
-        <p>Tag: {{tag}}</p>
-        <p>Status: {{build.status}}</p>
-        <p>Build started: {{datetime job.started "Mon Jan 2 15:04:05 MST 2006" "Local"}}</p>
-        <p>Build finished: {{datetime job.finished "Mon Jan 2 15:04:05 MST 2006" "Local"}}</p>
+        Link: {{build.link}}
       from:
         from_secret: EMAIL_FROM
       recipients:
