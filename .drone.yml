@@ -57,6 +57,30 @@ steps:
     when:
       status: [ success ]
 
+  - name: Webhook infra ravenor
+    image: jerheij/drone-shell
+    settings:
+      cmd:
+        from_secret: RAVENOR_INFRA
+    when:
+      status: [ success ]
+
+  - name: Webhook infra gaunt
+    image: jerheij/drone-shell
+    settings:
+      cmd:
+        from_secret: GAUNT_INFRA
+    when:
+      status: [ success ]
+
+  - name: Webhook infra email
+    image: jerheij/drone-shell
+    settings:
+      cmd:
+        from_secret: EMAIL_INFRA
+    when:
+      status: [ success ]
+
   - name: email_notification
     image: drillster/drone-email
     settings:
