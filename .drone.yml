@@ -49,6 +49,14 @@ steps:
       branch:
         - stable
 
+  - name: Webhook infra eisenhorn
+    image: jerheij/drone-shell
+    settings:
+      cmd:
+        from_secret: EISENHORN_INFRA
+    when:
+      status: [ success ]
+
   - name: email_notification
     image: drillster/drone-email
     settings:
